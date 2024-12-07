@@ -1,0 +1,92 @@
+---
+title: "Merging Data"
+format: html
+---
+
+```{python}
+#pip install fsspec
+#pip install altair altair_saver selenium
+#pip install altair_saver
+
+import pandas as pd
+import altair as alt
+```
+
+
+```{python}
+
+# Load the dataset
+merged_df = pd.read_csv("C://Users//arifm//OneDrive//Documents//GitHub//Final-Project-Polio//Plotting//merged_df.csv")
+
+# Clean the data: remove rows with missing critical values
+cleaned_data = merged_df.dropna(subset=['defecation_rate', 'estimated_polio_cases'])
+
+# Identify the top 10 countries by total polio cases
+top_10_countries = (
+    cleaned_data.groupby('country_name', as_index=False)['estimated_polio_cases']
+    .sum()
+    .nlargest(10, 'estimated_polio_cases')['country_name']
+)
+
+# Filter the data to include only the top 10 countries
+filtered_top_10_data = cleaned_data[cleaned_data['country_name'].isin(top_10_countries)]
+
+# Create the heatmap for defecation rates
+heatmap = alt.Chart(filtered_top_10_data).mark_rect().encode(
+    x=alt.X('year:O', title='Year'),
+    y=alt.Y('country_name:N', title='Country', sort=alt.EncodingSortField('estimated_polio_cases', order='descending')),
+    color=alt.Color(
+        'defecation_rate:Q',
+        scale=alt.Scale(scheme='greens'),  # Green color scheme
+        title='Defecation Rate (%)'
+    ),
+    tooltip=[
+        alt.Tooltip('country_name:N', title='Country'),
+        alt.Tooltip('year:O', title='Year'),
+        alt.Tooltip('defecation_rate:Q', title='Open Defecation Rate (%)', format='.2f'),
+        alt.Tooltip('estimated_polio_cases:Q', title='Polio Cases')
+    ]
+).properties(
+    title={
+        'text': 'Open Defecation Rates for Top 10 Countries by Polio Cases',
+        'subtitle': 'Heatmap with Polio Case Bubble Overlay'
+    },
+    width=800,
+    height=500
+)
+
+# Add bubble overlay for polio cases
+bubble_overlay = alt.Chart(filtered_top_10_data[filtered_top_10_data['estimated_polio_cases'] > 0]).mark_circle(opacity=0.5).encode(
+    x=alt.X('year:O'),
+    y=alt.Y('country_name:N'),
+    size=alt.Size(
+        'estimated_polio_cases:Q',
+        scale=alt.Scale(range=[30, 800]),
+        title='Polio Cases'
+    ),
+    color=alt.value('#444444'),  # Gray bubbles
+    tooltip=[
+        alt.Tooltip('country_name:N', title='Country'),
+        alt.Tooltip('year:O', title='Year'),
+        alt.Tooltip('estimated_polio_cases:Q', title='Polio Cases')
+    ]
+)
+
+# Combine heatmap with bubble overlay
+heat_map = (heatmap + bubble_overlay).resolve_scale(
+    color='independent',
+    size='independent'
+)
+
+# Display the chart
+heat_map.display()
+
+```
+
+
+```{python}
+
+# Save the chart as an HTML file
+heat_map.save('C://Users//arifm//OneDrive//Documents//GitHub//Final-Project-Polio//Plotting//Heatmap//heat_map.html')
+
+```

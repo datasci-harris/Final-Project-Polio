@@ -1,9 +1,4 @@
 ---
-title: "Untitled"
-format: html
----
-
----
 title: "Named Entity detection"
 format: html
 ---

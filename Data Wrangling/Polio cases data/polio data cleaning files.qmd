@@ -3,10 +3,6 @@ title: "Polio data cleaning"
 format: html
 ---
 
----
-title: "Untitled"
-format: html
----
 
 
 ```{python}
@@ -15,17 +11,12 @@ format: html
 ```
 
 
-
-
-
-
-
 ```{python}
 
 import pandas as pd
 
 # file path
-file_path = r"C:\Users\arifm\OneDrive\Documents\GitHub\Final-Project-Polio\Data Wrangling\Polio cases data"
+file_path = r"C:\Users\arifm\OneDrive\Documents\GitHub\Final-Project-Polio\Data Wrangling\Polio cases data\estimated_polio_cases_raw.csv"
 
 # Load the dataset only once
 polio_data = pd.read_csv(file_path)
@@ -40,7 +31,7 @@ polio_data_cleaned = polio_data.rename(columns={
 
 # Filter data for years between 2000 and 2020
 polio_data_cleaned = polio_data_cleaned[
-    (polio_data_cleaned['Year'] >= 2000) & (polio_data_cleaned['Year'] <= 2020)
+    (polio_data_cleaned['year'] >= 2000) & (polio_data_cleaned['year'] <= 2020)
 ]
 
 # Display the cleaned and filtered DataFrame
