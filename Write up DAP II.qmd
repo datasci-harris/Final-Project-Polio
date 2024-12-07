@@ -13,16 +13,16 @@ include-before-body: |
     breaksymbolleft={},
     breaklines
   }
-output: html
+output: pdf
 ---
 
 
 # Project Write-Up: Interconnections between Immunization and Open Defecation Policies on Polio Cases
 ## Primary Purpose
 This study aims to assess how the interconnections between immunization efforts and open defecation policies have influenced the prevalence of poliovirus cases across nations. The analysis draws on three datasets:
-1.  	Polio immunization data: Tracking vaccine administration rates.
-2.  	Country-wise open defecation percentage rates: Evaluating sanitation practices.
-3.  	Prevalence of polio cases: Assessing national polio burden.
+# 1.  	Polio immunization data: Tracking vaccine administration rates.
+# 2.  	Country-wise open defecation percentage rates: Evaluating sanitation practices.
+# 3.  	Prevalence of polio cases: Assessing national polio burden.
 Reported cases of paralytic polio often underestimate actual cases due to under-detection, including unreported acute flaccid paralysis (AFP) cases and inadequate stool sample testing for poliovirus. To adjust for this, Tebbens et al. developed a method using two indicators: non-polio AFP rates (to gauge detection quality) and the percentage of AFP cases with adequate stool samples. They derived correction factors, ranging from 7 for poor surveillance to 1.11 for robust systems, applied to estimate true case numbers. This approach evolved from uniform correction factors in pre-1995 to refined metrics post-1995, enabling more accurate estimates globally, including for countries beyond GPEI support.
 The data, sourced from the World Bank and UNICEF, forms the foundation for an interactive dashboard designed to provide users with a comprehensive understanding of country-level interactions between these variables and their impact on polio prevalence.
 ## Introduction
@@ -32,15 +32,15 @@ How do global trends in estimated polio cases correlate with immunization covera
 # Methodology & Visualizations
 ## 1.     NLP Analysis
 The NLP analysis of articles on polio emergence, prevalence, and eradication provided valuable insights into the thematic focus of the discussions. By analyzing the frequency of keywords such as "vaccines," "sanitation," "immunization," "open defecation," and "sewage," we were able to identify the dominant themes and gaps in the narrative, which informed the development of our research question and the selection of relevant indicators.
-·       Identifying Dominant Themes:
+# ·       Identifying Dominant Themes:
  The keyword "vaccines" appeared 55 times, making it the most frequently mentioned term. This underscores the centrality of vaccination efforts in combating polio. Similarly, "immunization" appeared 28 times, further emphasizing the focus on preventative measures through vaccine distribution and coverage. These findings directed our attention toward immunization rates as a critical indicator to analyze polio prevalence and eradication efforts.
-·       Recognizing Complementary Factors:
+# ·       Recognizing Complementary Factors:
  Keywords related to sanitation, such as "sanitation" (4 mentions) and "sewage" (9 mentions), were less frequently discussed, while "open defecation" was not mentioned at all. This suggests that while these factors might not be as prominently featured in the discourse, they are still relevant in understanding the broader context of polio transmission, especially in areas with poor hygiene and sanitation infrastructure. These insights justified the inclusion of open defecation rates as a complementary indicator to examine environmental conditions that may contribute to polio outbreaks.
-·       Framing the Research Question:
+# ·       Framing the Research Question:
  Based on the analysis, we framed our research question to explore the interplay between immunization efforts and environmental factors in reducing polio cases. Specifically, we aimed to investigate:
-o   How do immunization rates correlate with the prevalence of polio cases across countries?
-o   What role do sanitation and hygiene indicators, such as open defecation rates, play in polio transmission?
-·       Selecting Indicators:
+# o   How do immunization rates correlate with the prevalence of polio cases across countries?
+# o   What role do sanitation and hygiene indicators, such as open defecation rates, play in polio transmission?
+# ·       Selecting Indicators:
  The keyword analysis reinforced the importance of using immunization rates as a primary indicator, given their prominence in the literature. To capture environmental and hygiene-related factors, open defecation rates were used as a proxy to assess the impact of sanitation practices in polio eradication or persistence in certain countries.
 ## 2.     Static Visualization using Altair:
 Using three datasets providing country-wide data from 2000–2020 on open defecation rates, immunization rates, and estimated polio cases, we undertook extensive data cleaning and transformation. The steps included reshaping the data, renaming variables for clarity, handling columns with missing values, and merging the datasets on country codes. Duplicate entries were removed to ensure consistency.
@@ -52,7 +52,7 @@ Bubble charts were incorporated in both the visualizations due to the differing 
 
 ```{python}
 from IPython.display import Image
-Image(filename=r"C:\Users\arifm\OneDrive\Documents\GitHub\Final-Project-Polio\heatmap.png")
+Image(filename=r"C:\Users\arifm\OneDrive\Documents\GitHub\Final-Project-Polio\Images\heatmap.png")
 ```
 
 The heatmap illustrates the trends in open defecation rates and their potential relationship with polio cases for the top 10 countries reporting polio cases over time. The color intensity represents the percentage of open defecation rates, with darker shades of green indicating higher rates and lighter shades showing lower rates. Overlaying this is a bubble chart where the bubble size corresponds to the number of estimated polio cases.
@@ -64,7 +64,7 @@ Countries like India and Ethiopia, which historically had high open defecation r
 
 ```{python}
 from IPython.display import Image
-Image(filename=r"C:\Users\arifm\OneDrive\Documents\GitHub\Final-Project-Polio\bubble_map.png")
+Image(filename=r"C:\Users\arifm\OneDrive\Documents\GitHub\Final-Project-Polio\Images\bubble_map.png")
 ```
 
 To examine the correlation between immunization rates and estimated polio cases, we created a bubble chart. The color of the bubbles represents immunization rates, while the bubble size corresponds to the average number of estimated polio cases, providing an intuitive understanding of the data. Countries shaded in green and yellow represent high immunization rates and are also the ones with significantly reduced or eradicated cases. In contrast, countries in purple and blue show relatively lower immunization rates and continue to face outbreaks. Over the past two decades, cases have declined in all 10 countries; however, Pakistan and Afghanistan remain endemic, as highlighted in the data. Low immunization rates can be considered a contributing factor to this persistence.
@@ -80,8 +80,8 @@ Efforts to combat polio face significant challenges related to data accuracy and
 In conclusion, while there is a positive correlation between immunization rates and polio cases, highlighting the critical role of vaccination in combating the disease, the lack of a direct correlation between open defecation rates and polio cases suggests that other factors may influence disease transmission. Additionally, the emergence of vaccine-derived polio presents a new challenge for global eradication efforts, emphasizing the need for sustained immunization campaigns and robust public health strategies.
  
  ## Way Forward
-To achieve global polio eradication, a comprehensive, multi-pronged strategy is essential. Enhanced vaccination coverage is paramount, requiring over 95% immunization rates to sustain herd immunity and prevent outbreaks. Both oral and injectable vaccines must be promoted to minimize cases of vaccine-derived polio. Behavioral and social interventions are critical in addressing vaccine hesitancy through targeted awareness campaigns, leveraging partnerships with NGOs, religious groups, and governments to expand early childhood immunization outreach. Equally important is sanitation improvement, which includes developing wet toilets, promoting safe disposal practices, and passing legislation to phase out dry latrines while supporting sustainable sewage systems. Access to clean water must be ensured through robust purification systems and public education on boiling water to eliminate poliovirus risks.
+To achieve global polio eradication, a comprehensive, multi-pronged strategy is essential. Enhanced vaccination coverage is paramount, requiring over 95% immunization rates to 
+sustain herd immunity and prevent outbreaks. Both oral and injectable vaccines must be promoted to minimize cases of vaccine-derived polio. Behavioral and social interventions 
+are critical in addressing vaccine hesitancy through targeted awareness campaigns, leveraging partnerships with NGOs, religious groups, and governments to expand early childhood immunization outreach. Equally important is sanitation improvement, which includes developing wet toilets, promoting safe disposal practices, and passing legislation to phase out dry latrines while supporting sustainable sewage systems. Access to clean water must be ensured through robust purification systems and public education on boiling water to eliminate poliovirus risks.
 Conflict and migration pose unique challenges in the global project of polio eradication. Targeted interventions are required to rebuild infrastructure, such as safe water and sanitation facilities in conflict zones, and to provide immunization services in refugee camps. Finally, global coordination is necessary to harmonize vaccination strategies and promote the combined use of oral and injectable vaccines, while fostering knowledge-sharing and financial support for low-income countries. These coordinated efforts must address not only immunization and sanitation but also broader socio-political barriers to ensure a sustainable, polio-free future.
-
-
 
