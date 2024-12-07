@@ -87,6 +87,6 @@ heat_map.display()
 ```{python}
 
 # Save the chart as an HTML file
-heat_map.save('C://Users//arifm//OneDrive//Documents//GitHub//Final-Project-Polio//Plotting//heat_map.html')
+heat_map.save('C://Users//arifm//OneDrive//Documents//GitHub//Final-Project-Polio//Plotting//Heatmap//heat_map.html')
 
 ```
