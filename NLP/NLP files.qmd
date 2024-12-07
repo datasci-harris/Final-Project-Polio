@@ -1,0 +1,72 @@
+---
+title: "Untitled"
+format: html
+---
+
+---
+title: "Named Entity detection"
+format: html
+---
+
+```{python}
+import requests
+from bs4 import BeautifulSoup
+import re
+from collections import Counter
+```
+
+```{python}
+import spacy
+nlp = spacy.load("en_core_web_sm")
+```
+
+
+```{python}
+keywords = ["vaccines", "sanitation", "immunization", "open defecation", "sewage"]
+```
+
+
+```{python}
+# Articles on polio emergence, polio prevalence and polio eradication
+urls = [
+    "https://www.rotary.org/en/keep-buzz-going-fight-polio", 
+    "https://www.cdc.gov/global-polio-vaccination/about/index.html#:~:text=Polio%20cases%20have%20decreased%20by,polio%20a%20candidate%20for%20eradication.","https://globalvoices.org/2024/12/05/what-is-hindering-the-complete-eradication-of-polio-in-africa/", "https://www.who.int/news/item/03-12-2024-statement-of-the-fortieth-meeting-of-the-polio-ihr-emergency-committee", "https://www.sdpb.org/healthcare/2024-12-03/medical-experts-discuss-polio-rates-at-sioux-falls-rotary-meeting", "https://www.cdc.gov/global-polio-vaccination/why/index.html", "https://polioeradication.org/news/gpei-announces-strategy-extension-and-revised-budget-to-protect-all-children-from-polio/", "https://www.cidrap.umn.edu/polio/pakistan-nigeria-chad-report-more-polio-cases", "https://www.npr.org/sections/goats-and-soda/2024/07/26/nx-s1-5049852/gaza-polio-who", "https://apnews.com/article/pakistan-polio-cases-vaccines-militants-eradication-8f12df7c27891a559850988431599673", "https://www.aljazeera.com/news/2024/9/2/polio-returns-to-gaza-where-else-has-the-virus-re-emerged", "https://www.npr.org/sections/goats-and-soda/2024/09/13/g-s1-22620/gaza-polio-vaccination-campaign"
+]
+
+```
+
+
+```{python}
+# Initialize a counter for keywords
+keyword_counter = Counter()
+
+# Function to fetch article content
+def fetch_article_content(url):
+    try:
+        response = requests.get(url)
+        if response.status_code == 200:
+            # Parse the HTML content using BeautifulSoup
+            soup = BeautifulSoup(response.content, 'html.parser')
+            # Extract all text from the page
+            text = soup.get_text()
+            return text
+        else:
+            print(f"Failed to fetch {url}: Status code {response.status_code}")
+            return ""
+    except Exception as e:
+        print(f"Error fetching {url}: {e}")
+        return ""
+
+# Process each URL
+for url in urls:
+    article_text = fetch_article_content(url)
+    # Convert text to lowercase to ensure case-insensitive matching
+    article_lower = article_text.lower()
+    # Count occurrences of each keyword
+    for keyword in keywords:
+        keyword_counter[keyword] += len(re.findall(r'\b' + re.escape(keyword) + r'\b', article_lower))
+
+# Display the keyword frequency
+for keyword, count in keyword_counter.items():
+    print(f"{keyword}: {count}")
+```
