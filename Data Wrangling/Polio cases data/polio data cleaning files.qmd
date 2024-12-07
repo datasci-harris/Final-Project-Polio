@@ -11,17 +11,11 @@ format: html
 
 ```{python}
 ## Data source (WHO - 2019 & 2024): https://ourworldindata.org/grapher/number-of-estimated-paralytic-polio-cases-by-world-region.csv?v=1&csvType=full&useColumnShortNames=true
-import pandas as pd
-file_path = "C:\\Users\\arifm\\OneDrive\\Documents\\GitHub\\DAP-II-Final-project-Polio-trends-\\number-of-estimated-paralytic-polio-cases-by-world-region.csv"
-polio_data = pd.read_csv (file_path)
+
 ```
 
 
 
-
-```{python}
-polio_data.head()
-```
 
 
 
@@ -31,15 +25,16 @@ polio_data.head()
 import pandas as pd
 
 # file path
-file_path = "C:\\Users\\arifm\\OneDrive\\Documents\\GitHub\\DAP-II-Final-project-Polio-trends-\\estimated_polio_cases.csv"
+file_path = r"C:\Users\arifm\OneDrive\Documents\GitHub\Final-Project-Polio\Data Wrangling\Polio cases data"
 
 # Load the dataset only once
 polio_data = pd.read_csv(file_path)
 
 # Rename columns in the DataFrame
 polio_data_cleaned = polio_data.rename(columns={
-    'Estimated polio cases': 'reported_cases',  # Adjust these column names if necessary
+    'reported_cases': 'Estimated polio cases',  # Adjust these column names if necessary
     'Code': 'country_code',
+    'Year': 'year',
     'Entity': 'country_name',
 })
 
@@ -52,7 +47,7 @@ polio_data_cleaned = polio_data_cleaned[
 print("Renamed Columns and Filtered Data (2000-2020):")
 print(polio_data_cleaned.head())
 
-output_file_path = "C:\\Users\\arifm\\OneDrive\\Documents\\GitHub\\DAP-II-Final-project-Polio-trends-\\polio_data_cleaned.csv"
+output_file_path = output_file_path = r"C:\Users\arifm\OneDrive\Documents\GitHub\Final-Project-Polio\Data Wrangling\Polio cases data\polio_data_cleaned.csv"
 polio_data_cleaned.to_csv(output_file_path, index=False)
 
 

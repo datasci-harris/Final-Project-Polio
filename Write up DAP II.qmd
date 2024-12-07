@@ -1,29 +1,21 @@
 ---
+
 title: "Write-up POLIO TRENDS"
-author: "Ashirwad, Mahnoor and Anand"
+author: "Ashirwad, Mahnoor, and Anand"
 date: "December 7, 2024"
-format: 
-  pdf:
-    include-in-header: 
-       text: |
-         \usepackage{fvextra}
-         \DefineVerbatimEnvironment{Highlighting}{Verbatim}{breaklines,commandchars=\\\{\}}
-include-before-body:
-  text: |
-    \RecustomVerbatimEnvironment{verbatim}{Verbatim}{
-      showspaces = false,
-      showtabs = false,
-      breaksymbolleft={},
-      breaklines
-    }
-output: pdf
-  echo: false
-  eval: false
+header-includes: |
+  \usepackage{fvextra}
+  \DefineVerbatimEnvironment{Highlighting}{Verbatim}{breaklines,commandchars=\\\{\}}
+include-before-body: |
+  \RecustomVerbatimEnvironment{verbatim}{Verbatim}{
+    showspaces = false,
+    showtabs = false,
+    breaksymbolleft={},
+    breaklines
+  }
+output: html
 ---
 
-```{python}
-
-```
 
 # Project Write-Up: Interconnections between Immunization and Open Defecation Policies on Polio Cases
 ## Primary Purpose
