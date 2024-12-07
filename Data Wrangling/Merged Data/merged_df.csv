@@ -1,4 +1,8 @@
+<<<<<<< Updated upstream
 country_name,country_code,year,reported_cases,immunisation_percentage,defecation_rate
+=======
+country_name,country_code,year,estimated_reported_cases,immunisation_percentage,defecation_rate
+>>>>>>> Stashed changes
 Afghanistan,AFG,2000,840.0,24.0,25.96848455
 Albania,ALB,2000,0.0,97.0,0.888852768
 Algeria,DZA,2000,0.0,86.0,6.233949014

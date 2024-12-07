@@ -1,4 +1,8 @@
+<<<<<<< Updated upstream
 country_name,country_code,year,reported_cases
+=======
+country_name,country_code,year,estimated_reported_cases
+>>>>>>> Stashed changes
 Afghanistan,AFG,2000,840
 Afghanistan,AFG,2001,22
 Afghanistan,AFG,2002,11.1
