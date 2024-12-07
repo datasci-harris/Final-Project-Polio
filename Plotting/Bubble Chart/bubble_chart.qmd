@@ -1,0 +1,84 @@
+---
+title: "Bubble plot"
+format: html
+---
+
+### Loading Merged Data
+```{python}
+import pandas as pd
+import pandas as pd
+
+# Correct file path using forward slashes
+file_path = "C:/Users/Lenovo/Documents/GitHub/student30538/Final-Project-Polio/Data Wrangling/Merged Data/merged_df.csv"
+
+# Load the CSV file
+merged_df = pd.read_csv(file_path)
+
+# Display the first few rows of the dataframe
+print(merged_df.head())
+```
+
+
+
+### Visualisations
+## Filtering Data
+```{python}
+# Filter for countries with positive reported polio cases
+filtered_data = merged_df[merged_df['reported_cases'] > 0]
+
+# Identify the top 10 countries by total reported polio cases
+top_10_countries = (
+    filtered_data.groupby('country_name')['reported_cases']
+    .sum()  # Calculate the total cases per country
+    .nlargest(10)  # Select the top 10 countries
+    .index  # Extract their names
+)
+
+# Filter the data to include only the top 10 countries
+filtered_top_10_data = filtered_data[filtered_data['country_name'].isin(top_10_countries)]
+```
+
+## Bubble Chart
+```{python}
+import altair as alt
+import pandas as pd
+
+# Filter for rows with valid defecation rates
+filtered_data = merged_df[merged_df['defecation_rate'].notna()]
+
+# Filter top 10 countries by total reported polio cases
+top_10_countries = (
+    filtered_data.groupby('country_name')
+    .agg({'reported_cases': 'sum'})
+    .sort_values(by='reported_cases', ascending=False)
+    .head(10)
+    .index
+)
+
+# Filter data for top 10 countries
+filtered_top_10 = filtered_data[filtered_data['country_name'].isin(top_10_countries)]
+
+# Create a bubble chart
+bubble_chart = alt.Chart(filtered_top_10).mark_circle().encode(
+    x=alt.X('year:O', title='Year'),
+    y=alt.Y('country_name:N', title='Country'),
+    size=alt.Size('reported_cases:Q', title='Polio Cases', scale=alt.Scale(range=[10, 1000])),
+    color=alt.Color('immunisation_percentage:Q', scale=alt.Scale(scheme='viridis'), title='Immunization %'),
+    tooltip=[
+        'country_name', 'year', 'reported_cases', 
+        'immunisation_percentage', 'defecation_rate'
+    ]
+).properties(
+    title='Bubble Chart: Trends in Estimated Polio Cases and Immunization Rates',
+    width=800,
+    height=500
+)
+
+bubble_chart
+```
+
+
+
+
+
+
