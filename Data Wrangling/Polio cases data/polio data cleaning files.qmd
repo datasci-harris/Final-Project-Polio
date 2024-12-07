@@ -23,7 +23,7 @@ polio_data = pd.read_csv(file_path)
 
 # Rename columns in the DataFrame
 polio_data_cleaned = polio_data.rename(columns={
-    'reported_cases': 'Estimated polio cases',  # Adjust these column names if necessary
+    'reported_cases': 'estimated_polio_cases',  # Adjust these column names if necessary
     'Code': 'country_code',
     'Year': 'year',
     'Entity': 'country_name',
