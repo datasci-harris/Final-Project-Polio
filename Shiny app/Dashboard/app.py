@@ -44,7 +44,7 @@ def server(input, output, session):
         # Map the selected metric to the corresponding column in the data
         metric_column = {
             'Immunisation Percentage': 'immunisation_percentage',
-            'Estimated Polio Cases': 'estimated_polio_cases',
+            'Estimated Polio Cases': 'estimated_reported_cases',
             'Defecation Rate': 'defecation_rate'
         }[input.metric()]
 
