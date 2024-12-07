@@ -1,15 +1,14 @@
 ---
-title: "How do global trends in estimated polio cases correlate with
-immunization coverage and prevalence of open-defecation
-across countries from 2000 to 2020?"
-author: "Ashirwad, Mahnoor and Anand"
+
+title: "How do global trends in estimated polio cases correlate with immunization coverage and prevalence of open defecation across countries from 2000 to 2020?"
+author: "Ashirwad, Mahnoor, and Anand"
 date: "December 7, 2024"
-format: 
-  html:
-    output: 
-      html:
-        echo: false
-        eval: false
+output:
+  pdf_document:
+    keep_tex: true  # Keeps the intermediate LaTeX file for debugging
+    latex_engine: xelatex  # Optional, depending on your LaTeX setup
+  html_document:
+    fig_caption: true
 ---
 
 # Project Write-Up: Interconnections between Immunization and Open Defecation Policies on Polio Cases
