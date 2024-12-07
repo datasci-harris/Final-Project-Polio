@@ -24,11 +24,11 @@ print(merged_df.head())
 ## Filtering Data
 ```{python}
 # Filter for countries with positive reported polio cases
-filtered_data = merged_df[merged_df['reported_cases'] > 0]
+filtered_data = merged_df[merged_df['estimated_reported_cases'] > 0]
 
 # Identify the top 10 countries by total reported polio cases
 top_10_countries = (
-    filtered_data.groupby('country_name')['reported_cases']
+    filtered_data.groupby('country_name')['estimated_reported_cases']
     .sum()  # Calculate the total cases per country
     .nlargest(10)  # Select the top 10 countries
     .index  # Extract their names
@@ -49,8 +49,8 @@ filtered_data = merged_df[merged_df['defecation_rate'].notna()]
 # Filter top 10 countries by total reported polio cases
 top_10_countries = (
     filtered_data.groupby('country_name')
-    .agg({'reported_cases': 'sum'})
-    .sort_values(by='reported_cases', ascending=False)
+    .agg({'estimated_reported_cases': 'sum'})
+    .sort_values(by='estimated_reported_cases', ascending=False)
     .head(10)
     .index
 )
@@ -62,10 +62,10 @@ filtered_top_10 = filtered_data[filtered_data['country_name'].isin(top_10_countr
 bubble_chart = alt.Chart(filtered_top_10).mark_circle().encode(
     x=alt.X('year:O', title='Year'),
     y=alt.Y('country_name:N', title='Country'),
-    size=alt.Size('reported_cases:Q', title='Polio Cases', scale=alt.Scale(range=[10, 1000])),
+    size=alt.Size('estimated_reported_cases:Q', title='Polio Cases', scale=alt.Scale(range=[10, 1000])),
     color=alt.Color('immunisation_percentage:Q', scale=alt.Scale(scheme='viridis'), title='Immunization %'),
     tooltip=[
-        'country_name', 'year', 'reported_cases', 
+        'country_name', 'year', 'estimated_reported_cases', 
         'immunisation_percentage', 'defecation_rate'
     ]
 ).properties(
