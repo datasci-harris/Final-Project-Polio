@@ -1,0 +1,37 @@
+ title: "Merging Data"
+format: html
+---
+
+### Loading Data
+```{python}
+import pandas as pd
+immunisation_data = pd.read_csv("/Users/afreenwala/Documents/GitHub/Final-Project-Polio/Data Wrangling/Merged Data/immunisation_data_long.csv")
+
+polio_data = pd.read_csv("/Users/afreenwala/Documents/GitHub/Final-Project-Polio/Data Wrangling/Merged Data/clean_polio_data .csv")
+
+defecation_data = pd.read_csv("/Users/afreenwala/Documents/GitHub/Final-Project-Polio/Data Wrangling/Merged Data/clean_def_data.csv")
+```
+
+
+### Merging data 
+```{python}
+# Merge datasets on 'country_code' and 'Year'
+merged_df = pd.merge(immunisation_data, polio_data, on=['country_code', 'year'], how='inner')
+merged_df = pd.merge(merged_df, defecation_data, on=['country_code', 'year'], how='inner')
+
+# Drop duplicates
+merged_df = merged_df.drop_duplicates()
+
+# Drop the 'vaccine' column if it exists
+merged_df = merged_df.drop(columns=['vaccine'], errors='ignore')
+
+# Ensure specified column order
+ordered_columns = ['country_name', 'country_code', 'year', 'reported_cases', 'immunisation_percentage', 'defecation_rate']
+merged_df = merged_df[ordered_columns]
+
+# Save the merged dataframe to the specified path
+output_path = "/Users/afreenwala/Documents/GitHub/Final-Project-Polio/Data Wrangling/Merged Data/merged_df.csv"
+merged_df.to_csv(output_path, index=False)
+
+print(f"Merged dataset saved to {output_path}")
+```
